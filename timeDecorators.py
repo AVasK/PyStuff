@@ -45,7 +45,7 @@ def avgTime(N_iters = 3):
 
 if __name__ == "__main__":
     
-    @timeit
+    #@timeit
     def sleep(s):
         time.sleep(s)
     
@@ -57,3 +57,15 @@ if __name__ == "__main__":
         a = (a * b ** (200*c))
 
     f(124, 200, c = 344)
+    
+    ## Computationally stupid Fibonacci is used for illustrative purposes
+    
+    @functools.lru_cache() # LeastRecentlyUsed caching (memoization).
+    @timeit
+    def stupid_fib(n):
+        if n < 2:
+            return n
+        else:
+            return stupid_fib(n-2) + stupid_fib(n-1)
+    
+    print(stupid_fib(6)) # not so stupid with lru_cache!
